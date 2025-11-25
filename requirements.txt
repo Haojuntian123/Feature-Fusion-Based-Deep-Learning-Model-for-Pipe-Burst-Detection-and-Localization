@@ -1,0 +1,62 @@
+# Supplemental Material S1: Software Dependencies and Installation Guide
+
+## S1. Dependencies List
+Table S1 lists all software packages and their specific versions used in this study. Fixed versions ensure computational reproducibility and binary compatibility.
+
+| Package               | Version   | Purpose Category               |
+|-----------------------|-----------|--------------------------------|
+| torch                 | 1.12.1    | Core Computation (Deep Learning) |
+| numpy                 | 1.23.5    | Core Computation (Numerics)    |
+| scipy                 | 1.9.3     | Core Computation (Scientific Computing) |
+| wntr                  | 0.4.1     | Hydraulic Simulation (EPANET Bindings) |
+| pandas                | 1.5.0     | Data Handling (Tabular Data)   |
+| scikit-learn          | 1.1.2     | Machine Learning (Preprocessing/Evaluation) |
+| pytorch-ignite        | 0.4.10    | Machine Learning (Training Utilities) |
+| tqdm                  | 4.64.1    | Utility (Progress Tracking)    |
+| h5py                  | 3.7.0     | Data Handling (HDF5 Storage)   |
+| openpyxl              | 3.0.10    | Data Handling (Excel I/O)      |
+| matplotlib            | 3.6.2     | Visualization (Analysis Plots) |
+| python-dotenv         | 0.21.1    | System Tools (Configuration)   |
+| joblib                | 1.2.0     | System Tools (Parallel Processing) |
+
+## S2. Dependency Rationale
+1. **PyTorch 1.12.1**: Selected for deterministic behavior across GPU/CPU environments, critical for reproducible deep learning experiments.  
+2. **WNTR 0.4.1**: Fixed to match EPANET 2.2 hydraulic simulator bindings, ensuring consistent water network simulation results.  
+3. **Pandas 1.5.0**: Required for parsing Excel-based monitor scheme configurations (`monitor-scheme.xlsx`).  
+4. **PyTorch-Ignite 0.4.10**: Facilitates standardized training pipelines and real-time metric tracking.  
+5. **H5Py 3.7.0**: Enables efficient storage and retrieval of large hydraulic simulation tensors.  
+6. **Scikit-Learn 1.1.2**: Provides standardized data normalization and model evaluation metrics (e.g., MAE, RMSE).  
+7. **OpenPyXL**: Essential for reading node partitioning data stored in Excel files.  
+8. **Python-Dotenv**: Manages environment-specific configurations (e.g., file paths) without hardcoding.  
+9. **Joblib**: Accelerates parallel processing of hydraulic simulations in `create_data.py`.  
+
+## S3. Installation Instructions
+To replicate the computational environment:  
+1. Clone the GitHub repository:  
+   ```bash
+   git clone https://github.com/Haojuntian123/Feature-Fusion-Based-Deep-Learning-Model-for-Pipe-Burst-Detection-and-Localization.git
+   cd Feature-Fusion-Based-Deep-Learning-Model-for-Pipe-Burst-Detection-and-Localization
+   ```  
+2. Install dependencies using `pip` (Python ≥ 3.8 recommended):  
+   - **CPU-only systems**:  
+     ```bash
+     pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+     ```  
+   - **CUDA 11.3-enabled systems**:  
+     ```bash
+     pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu113
+     ```  
+
+## S4. Critical Compliance Note
+Pinned versions are mandatory for:  
+- **Hydraulic simulation consistency**: WNTR 0.4.1 ensures compatibility with EPANET 2.2 input files.  
+- **Deterministic GPU operations**: PyTorch 1.12.1 avoids non-deterministic cuDNN algorithms.  
+- **Binary compatibility**: HDF5 files generated with h5py 3.7.0 are readable across environments.  
+- **Reproducibility**: Fixed dependency versions prevent unintended updates from altering results.  
+
+## S5. Hardware Requirements
+- **Minimum configuration**: 8-core CPU, 16GB RAM, 2GB GPU  
+- **Recommended configuration**: 16-core CPU, 32GB RAM, NVIDIA Tesla V100 or equivalent GPU (16GB VRAM)  
+- **Storage requirement**: At least 50GB free space for simulation data and model storage  
+
+This configuration ensures that the hydraulic simulations and deep learning training can be completed within a reasonable timeframe (approximately 24-48 hours for full training with recommended hardware).
