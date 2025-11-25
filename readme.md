@@ -40,12 +40,12 @@ project_root/
 │   ├── dataset.py             # PyTorch Dataset pipelines
 │   ├── operate_inp.py         # Configure PDD dynamics
 │   └── analyze_data.py        # Hydraulic metric analysis
-├── evaluation_indicators/     ► Training scripts ◄
+├── evaluation_indicators/     # Training scripts 
 │   ├── run_detection.py       # Train baseline models
 │   ├── run_improve_detection.py # Train enhanced detectors
 │   ├── run_improve_location.py # Train enhanced locators
 │   └── run_location.py        # Baseline localization
-├── model/                     ♦ Baseline models ♦
+├── model/                     #Baseline models 
 │   ├── CNN.py                 # Vanilla convolutional model
 │   ├── FADenseNet.py          # Feature-Attention DenseNet
 │   └── RNN.py                 # Standard recurrent network
